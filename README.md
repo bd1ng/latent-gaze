@@ -10,3 +10,4 @@ Load all images intended for composite portrait into the "images" file. Run port
 
 # Composite Generation
 When all images have been prepared by portrait.py (see above), simply run overlay.py. This will pull directly from the "aligned" folder.  A composite image will be generated in the directory. 
+
