@@ -341,6 +341,12 @@ opacity: 1
     display: flex;
 }
 
+.modal img {
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
   .final-grid-wrapper {
     position: relative;
     width: 100vw;
