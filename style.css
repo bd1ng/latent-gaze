@@ -1,0 +1,454 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+  } 
+
+body {
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+    font-family: 'Bebas Neue', sans-serif;
+    overscroll-behavior: none;
+    height: 200vh;
+}
+
+.section {
+    min-height: 200vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 2rem;
+}
+
+.title {
+    font-family: Bebas Neue, sans-serif;
+    text-align: center;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: black;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.masked-layer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.masked-title {
+    font-size: 7rem;
+    font-family: 'Bebas Neue', sans-serif;
+    text-align: center;
+    background-image: url('assets/background-sq.jpg');
+    background-size: 200% 200%;
+    background-position: 0% 50%;
+    animation: 
+        bg-pan-yoyo 30s cubic-bezier(0.45, 0, 0.55, 1) infinite,
+        bg-ripple 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes bg-pan-yoyo {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.corner-text {
+    position: absolute;
+    bottom: 3rem;
+    left: 5rem;
+    font-family: Bebas Neue, sans-serif;
+    font-size: 1.25rem;
+    color: #fff;
+}
+
+.corner-text a {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.corner-text a:hover {
+    opacity: 0.8;
+}
+
+.icon {
+    height: 1.5em;
+    width: auto;
+    filter: brightness(0) invert(1);  /* Makes it white */
+}
+
+.icons {
+    display: flex;
+    gap: 0.5rem;
+    position: fixed;
+    bottom: 3rem;
+    right: 5rem;
+    z-index: 300;
+}
+
+.icons a {
+    display: flex;
+    align-items: center;
+    transition: opacity 0.2s ease;
+    z-index: 300;
+
+}
+
+.icons a:hover {
+    opacity: 0.8;
+    z-index: 300;
+}
+  
+.open {
+    height: 100vh;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    margin-top: -100vh;
+    opacity: 0;
+    z-index:200;
+    pointer-events: none;
+}
+
+.open-line p {
+    font-size: 1em;
+    margin: 0;
+    text-align: center;
+  }
+  
+
+.blank-line {
+    display: inline-block;
+    width: 30vw;
+    border-bottom: 0.4vh solid white;
+    vertical-align: baseline;
+    position: relative;
+    text-align: center;
+}
+
+#open-wordDisplay {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-size: 1em;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    text-align: center;
+}
+
+.intro-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+}
+  
+.intro-photo {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2rem;
+    padding-left: 15%;
+    justify-content: center;
+    z-index: 10;
+}
+
+.intro-photo img {
+    max-width: 40vw;
+    height: auto;
+    opacity: 0;
+    position: relative; 
+    z-index: 10;
+    margin-top: 0;
+    transform-origin: top left;
+}
+
+/* Grid Section */
+.intro-photo-container {
+    position: relative;
+    z-index: 10; /* Ensure it's above the grid during transition */
+}
+
+.intro-trigger {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1000vh;
+    visibility: hidden;
+    pointer-events: none;
+    margin-top: 1000vh;
+}
+
+  
+.grid-container {
+  display: grid;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  min-height: 30vh;
+  gap: 1vw;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  grid-auto-rows: 1fr; 
+  z-index: 2;
+}
+
+.grid-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.grid-photo-intro {
+opacity: 1 
+}
+
+
+.first-cell-placeholder {
+  background-color: transparent;
+}
+
+.first-cell-placeholder-final {
+    background-color: transparent;
+}
+
+/* Merge Section */
+.final-image {
+    max-width: 80%;
+    height: auto;
+    opacity: 0;
+}
+
+/* Pixel Section */
+.pixel-container {
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    transform: scale(1);
+}
+
+/* Holy Text Container */
+.scroll-line {
+  min-height: 100vh;
+  position: relative;
+  z-index: 100;
+  overflow: hidden !important;
+}
+
+.scroll-text {
+  position: fixed;
+  top: 50%;
+  right: 10vw;
+  width: 30vw;
+  transform: translateY(-50%);
+  font-size: 1.8rem;
+  text-align: center;
+  max-width: 60ch;
+  opacity: 0;
+  pointer-events: none;
+  font-weight: 300;
+  line-height: 1.4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 40vh;
+}
+
+.final-photo {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 40vh;
+    left: 15vw;
+    width: 30vw;
+    opacity: 0;
+    z-index: 100;
+}
+  
+  .final-photo img {
+    width: 100%;
+    height: auto;
+}
+
+  .zoom-dot {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    transform: translate(-50%, -50%);
+}
+  
+  .zoom-dot-overlay {
+    position: fixed;
+    top: 40vh;
+    left: 15vw;
+    width: 30vw;
+    height: 30vw; /* match final-photo's scale: 8 etc. */
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 110;
+}
+
+  .modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+  
+  .modal.show {
+    display: flex;
+}
+
+  .final-grid-wrapper {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    padding: 10vh 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    overflow: hidden;
+    visibility: hidden;
+    z-index: 1000;
+
+}
+  
+  .final-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 1vw;
+    width: 90vw;
+    height: 90vh;
+    aspect-ratio: 8 / 5; 
+}
+  
+  .final-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 1;
+    transition: opacity 0.8s ease;
+    border-radius: 6px;
+    aspect-ratio: 1 / 1;
+}
+
+  .final-grid-photo {
+    transition: box-shadow 0.6s ease-in-out;
+}
+
+  .scroll-line.final-line {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #aaa;
+    text-align: center;
+    max-width: 60ch;
+    margin: 0 auto;
+    font-style: normal;
+}
+  
+  .scroll-line.final-line em {
+    display: block;
+    margin-top: 1.5em;
+    font-style: italic;
+    color: #999;
+}
+  
+  .scroll-line.final-line a {
+    color: #88ccff;
+    text-decoration: underline;
+    word-break: break-word;
+}
+
+  .final-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;     
+    align-items: center;
+    padding: 0vh 10vw;
+    gap: 20vw;              
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    position: relative;
+    min-height: 100vh;
+    z-index: 10;
+}
+  
+  
+  .final-left h1 {
+    font-size: 5rem;
+    margin: 0;
+    color: white;
+}
+  
+  .final-right {
+    max-width: 40vw;
+    color: #ccc;
+}
+  
+  .final-right h2 {
+    font-size: 1.1rem;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+  
+  .final-right p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+  
+  .final-right a {
+    color: #88ccff;
+    text-decoration: underline;
+    word-break: break-word;
+}
+  
+  .final-right em {
+    font-style: italic;
+    color: #aaa;
+}
